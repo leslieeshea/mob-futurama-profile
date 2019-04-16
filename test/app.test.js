@@ -2,6 +2,7 @@ const request = require('supertest');
 const app = require('../lib/app');
 const Profile = require('../lib/models/Profile');
 
+jest.mock('../lib/services/futurama-api.js');
 
 describe('Profile routes', () => {
   afterEach(() => {
