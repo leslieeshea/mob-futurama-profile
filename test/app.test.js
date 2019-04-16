@@ -48,5 +48,26 @@ describe('Profile routes', () => {
         });
       });
   });
+
+  it('update profile by id', () => {
+    return request(app)
+      .post('/profile')
+      .send({ name: 'cindy', character: 'bender' })
+      .then((createdProfile) => {
+        return request(app)
+          .patch(`/profile/${createdProfile._id}`)
+          .send({
+            character: 'fry'
+          });
+      })
+      .then(res => {
+        expect(res.body).toEqual({
+          name: 'cindy',
+          character: 'fry',
+          _id: expect.any(String),
+          tagline: expect.any(String)
+        });
+      });
+  });
 });
 
