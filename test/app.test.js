@@ -24,5 +24,16 @@ describe('Profile routes', () => {
         });
       });
   });
+  it('get a list of all profiles', () => {
+    return Profile.create({ name: 'cindy', character: 'bender' })
+      .then(() => {
+        return request(app)
+          .get('/profile');
+      })
+      .then(res => {
+        expect(res.body).toHaveLength(1);
+      });
+  });
+  
 });
 
