@@ -34,6 +34,19 @@ describe('Profile routes', () => {
         expect(res.body).toHaveLength(1);
       });
   });
-  
+  it('get single profile by id', () => {
+    return Profile.create({ name: 'cindy', character: 'bender' })
+      .then(createdProfile => {
+        return request(app)
+          .get(`/profile/${createdProfile._id}`);
+      })
+      .then(res => {
+        expect(res.body).toEqual({
+          name: 'cindy',
+          character: 'bender',
+          _id: expect.any(String)
+        });
+      });
+  });
 });
 
