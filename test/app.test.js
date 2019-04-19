@@ -53,11 +53,13 @@ describe('Profile routes', () => {
     return request(app)
       .post('/profile')
       .send({ name: 'cindy', character: 'bender' })
-      .then((createdProfile) => {
+      .then((res) => {
         return request(app)
-          .patch(`/profile/${createdProfile._id}`)
+          .patch(`/profile/${res.body._id}`)
           .send({
-            character: 'fry'
+            name: res.body.name,
+            character: 'fry',
+            tagline: res.body.tagline
           });
       })
       .then(res => {
