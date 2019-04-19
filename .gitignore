@@ -1,5 +1,1 @@
 node_modules
-# ignore files in folder logs
-logs/*
-# but please keep the folder
-!logs/.data
